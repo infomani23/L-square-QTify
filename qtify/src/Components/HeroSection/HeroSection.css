@@ -1,0 +1,17 @@
+.hero {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    gap: 20px;
+    justify-content: baseline;
+    /* border: 1px solid red; */
+  }
+  .hero_left {
+    text-align: center;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+  }
+ 
