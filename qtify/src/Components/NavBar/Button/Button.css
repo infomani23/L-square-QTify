@@ -1,0 +1,13 @@
+.navButton{
+    width: 170px;
+    height: 47px;
+    background-color: var(--black-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.25px;
+    font-family:'Poppins', sans-serif; 
+    cursor: pointer;
+}
