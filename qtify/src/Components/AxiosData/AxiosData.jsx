@@ -1,24 +1,24 @@
 import axios from "axios";
+
 let BackEndPoint = `https://qtify-backend-labs.crio.do/`;
 
 export const getUId = () => {
-    let id = Math.random().toString(36).substr(3, 9);
-    return id;
-  };
+  let id = Math.random().toString(36).substr(3, 9);
+  return id;
+};
 
 /**
  * Fetches data for top albums.
  * @returns {Promise} A Promise that resolves to the response data if successful, or null if an error occurs.
  */
 export const topAlbumData = async () => {
-    try {
-        let res = await axios.get(`${BackEndPoint}albums/top`);
-        // console.log(res)
-        return res.data;
-    } catch (e) {
-        console.log(`error from AxiosData Component ->`, e);
-        return null;
-    }
+  try {
+    let res = await axios.get(`${BackEndPoint}albums/top`);
+    return res.data;
+  } catch (e) {
+    console.log(`error from AxiosData Component ->`, e);
+    return null;
+  }
 };
 
 /**
@@ -26,67 +26,56 @@ export const topAlbumData = async () => {
  * @returns {Promise} A Promise that resolves to the response data if successful, or null if an error occurs.
  */
 export const newAlbumData = async () => {
-    try {
-        let res = await axios.get(`${BackEndPoint}albums/new`);
-        return res.data;
-    } catch (e) {
-        console.log(`error from AxiosData Component ->`, e);
-        return null;
-    }
+  try {
+    let res = await axios.get(`${BackEndPoint}albums/new`);
+    return res.data;
+  } catch (e) {
+    console.log(`error from AxiosData Component ->`, e);
+    return null;
+  }
 };
 
 /**
- * Fetches data for a specific album identified by its slug.
- * @returns {Promise} A Promise that resolves to the response data if successful, or null if an error occurs.
+ * Fetches multiple data for top albums.
+ * @param {number} count - The number of top albums to fetch.
+ * @returns {Promise} A Promise that resolves to an array of top album data.
  */
-export const slugAlbumData = async () => {
-    try {
-        let res = await axios.get(`${BackEndPoint}albums/:slug`);
-        return res.data;
-    } catch (e) {
-        console.log(`error from AxiosData Component ->`, e);
-        return null;
+export const getMultipleTopAlbums = async (count) => {
+  const topAlbums = [];
+
+  for (let i = 0; i < count; i++) {
+    const albumData = await topAlbumData();
+    if (albumData) {
+      topAlbums.push(albumData);
     }
+  }
+
+  return topAlbums;
 };
 
 /**
- * Fetches data for genres.
- * @returns {Promise} A Promise that resolves to the response data if successful, or null if an error occurs.
+ * Fetches multiple data for new albums.
+ * @param {number} count - The number of new albums to fetch.
+ * @returns {Promise} A Promise that resolves to an array of new album data.
  */
-export const genresData = async () => {
-    try {
-        let res = await axios.get(`${BackEndPoint}genres`);
-        return res.data;
-    } catch (e) {
-        console.log(`error from AxiosData Component ->`, e);
-        return null;
+export const getMultipleNewAlbums = async (count) => {
+  const newAlbums = [];
+
+  for (let i = 0; i < count; i++) {
+    const albumData = await newAlbumData();
+    if (albumData) {
+      newAlbums.push(albumData);
     }
+  }
+
+  return newAlbums;
 };
 
-/**
- * Fetches data for songs.
- * @returns {Promise} A Promise that resolves to the response data if successful, or null if an error occurs.
- */
-export const songsData = async () => {
-    try {
-        let res = await axios.get(`${BackEndPoint}songs`);
-        return res.data;
-    } catch (e) {
-        console.log(`error from AxiosData Component ->`, e);
-        return null;
-    }
-};
+// Usage
+const numberOfAlbums = 13;
 
-/**
- * Fetches data for frequently asked questions (FAQ).
- * @returns {Promise} A Promise that resolves to the response data if successful, or null if an error occurs.
- */
-export const faqData = async () => {
-    try {
-        let res = await axios.get(`${BackEndPoint}faq`);
-        return res.data;
-    } catch (e) {
-        console.log(`error from AxiosData Component ->`, e);
-        return null;
-    }
-};
+const multipleTopAlbums = await getMultipleTopAlbums(numberOfAlbums);
+const multipleNewAlbums = await getMultipleNewAlbums(numberOfAlbums);
+
+console.log(multipleTopAlbums);
+console.log(multipleNewAlbums);
