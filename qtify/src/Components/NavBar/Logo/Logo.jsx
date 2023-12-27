@@ -1,4 +1,6 @@
 import LogoImage from "../../../Assests/Logo.png";
+import React from 'react';
+
 
 /**
  * Represents the logo component.
