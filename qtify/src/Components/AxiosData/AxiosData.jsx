@@ -13,7 +13,7 @@ export const getUId = () => {
  */
 export const topAlbumData = async () => {
     try {
-        let res = await axios.get(`${BackEndPoint}albums/new`);
+        let res = await axios.get(`${BackEndPoint}albums/top`);
         console.log('Top Album Response:', res.data); // Log the response
         return res.data;
     } catch (e) {
@@ -28,7 +28,7 @@ export const topAlbumData = async () => {
  */
 export const newAlbumData = async () => {
     try {
-        let res = await axios.get(`${BackEndPoint}albums/top`);
+        let res = await axios.get(`${BackEndPoint}albums/new`);
         console.log('New Album Response:', res.data);
         return res.data;
     } catch (e) {
