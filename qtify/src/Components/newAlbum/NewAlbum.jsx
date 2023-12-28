@@ -70,6 +70,7 @@ const NewAlbum = () => {
         } else {
             return null;
         }
+        
         })}
       </Grid>
     </Box>
