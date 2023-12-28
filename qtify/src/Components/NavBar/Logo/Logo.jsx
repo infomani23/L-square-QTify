@@ -1,6 +1,5 @@
+import React from "react";
 import LogoImage from "../../../Assests/Logo.png";
-import React from 'react';
-
 
 /**
  * Represents the logo component.
@@ -8,17 +7,7 @@ import React from 'react';
  * @returns {JSX.Element} The rendered logo component.
  */
 const Logo = () => {
-  const logoContainerStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    marginLeft: '20px', 
-  };
-
-  return (
-    <div style={logoContainerStyle}>
-      <img src={LogoImage} alt="Logo" />
-    </div>
-  );
+  return <img src={LogoImage} alt="Logo" />;
 };
 
 export default Logo;

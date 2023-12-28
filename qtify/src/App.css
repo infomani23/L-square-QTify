@@ -1,23 +1,47 @@
-@import url("https://fonts.googleapis.com/css2?family=PT+Sans&family=Poppins&family=Roboto:wght@500&display=swap");
-
-:root {
-  --primary-color: #34c94b;
-  --black-color: #121212;
-  --white-color: #ffffff;
+.App {
+  text-align: center;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
 }
 
-body {
-  background-color: var(--black-color);
-  /* background-color: var(--white-color); */
-  font-family: "Poppins", sans-serif;
-  color: var(--white-color);
-  overflow-x: hidden;
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.container{
+  display: flex;
+  height: 74px;
+  background-color: #34C94B;
+  justify-content: space-around;
+}
+.search{
+  padding-top: 13px;
+}
