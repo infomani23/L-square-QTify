@@ -8,6 +8,7 @@ import LogoImage from "../../../Assests/Logo.png";
  */
 const Logo = () => {
   return <img src={LogoImage} alt="Logo" />;
+  
 };
 
 export default Logo;
