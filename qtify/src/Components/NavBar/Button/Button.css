@@ -1,5 +1,6 @@
 .navButton{
     width: 170px;
+    
     height: 47px;
     background-color: var(--black-color);
     color: var(--primary-color);
