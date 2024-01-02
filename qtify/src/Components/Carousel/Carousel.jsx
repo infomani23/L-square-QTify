@@ -19,52 +19,97 @@ const Controls= ({album}) => {
 
 
 function Carousel ({album, cardType}) {
-  return (
-    <div className={styles.wrapper}>
-        <Swiper
-          modules={{ Navigation }}
-          spaceBetween={40}
-          slidesPerView={6}
-          style={{padding: "20px 30px"}}
-          initialSlide={0}
-          allowTouchMove
-        >  
-            <Controls album={album}/>
+//   return (
+//     <div className={styles.wrapper}>
+//         <Swiper
+//           modules={{ Navigation }}
+//           spaceBetween={40}
+//           slidesPerView={6}
+//           style={{padding: "20px 30px"}}
+//           initialSlide={0}
+//           allowTouchMove
+//         >  
+//             <Controls album={album}/>
 
-            <CarouselNavigationLeft />
-            <CarouselNavigationRight />
+//             <CarouselNavigationLeft />
+//             <CarouselNavigationRight />
 
-            {album && album.map((albumItem) => (
-                <SwiperSlide>
-                  {
-                    cardType ? 
-                    (
-                      <Card 
-                      key={albumItem.id}
-                      imgLink={albumItem.image} 
-                      number={albumItem.follows} 
-                      genreName={albumItem.title}
-                      numberSongs={albumItem.songs.length}
-                      cardType={cardType}
-                      />
-                    ) :
-                    (
-                      <Card
-                      key={albumItem.id}
-                      imgLink={albumItem.image}
-                      number={albumItem.likes}
-                      genreName={albumItem.title}
-                      numberSongs={""}
-                      cardType={cardType}
-                      />
-                    )
-                  }
-                </SwiperSlide>
-            ))}
+//             {album && album.map((albumItem) => (
+//                 <SwiperSlide>
+//                   {
+//                     cardType ? 
+//                     (
+//                       <Card 
+//                       key={albumItem.id}
+//                       imgLink={albumItem.image} 
+//                       number={albumItem.follows} 
+//                       genreName={albumItem.title}
+//                       numberSongs={albumItem.songs.length}
+//                       cardType={cardType}
+//                       />
+//                     ) :
+//                     (
+//                       <Card
+//                       key={albumItem.id}
+//                       imgLink={albumItem.image}
+//                       number={albumItem.likes}
+//                       genreName={albumItem.title}
+//                       numberSongs={""}
+//                       cardType={cardType}
+//                       />
+//                     )
+//                   }
+//                 </SwiperSlide>
+//             ))}
 
-        </Swiper>
-    </div>
-  );
-};
+//         </Swiper>
+//     </div>
+//   );
+// };
+
+// export default Carousel;
+return (
+  <div className={styles.wrapper}>
+    <Swiper
+      modules={{ Navigation }}
+      spaceBetween={40}
+      slidesPerView={6}
+      style={{ padding: "20px 30px" }}
+      initialSlide={2} // Adjust this value based on your requirement
+      allowTouchMove
+    >
+      <Controls album={album} />
+
+      <CarouselNavigationLeft />
+      <CarouselNavigationRight />
+
+      {album &&
+        album.map((albumItem) => (
+          <SwiperSlide key={albumItem.id}>
+            {cardType ? (
+              <Card
+                key={albumItem.id}
+                imgLink={albumItem.image}
+                number={albumItem.follows}
+                genreName={albumItem.title}
+                numberSongs={albumItem.songs.length}
+                cardType={cardType}
+              />
+            ) : (
+              <Card
+                key={albumItem.id}
+                imgLink={albumItem.image}
+                number={albumItem.likes}
+                genreName={albumItem.title}
+                numberSongs={""}
+                cardType={cardType}
+              />
+            )}
+          </SwiperSlide>
+        ))}
+    </Swiper>
+  </div>
+);
+}
 
 export default Carousel;
