@@ -91,9 +91,9 @@ import 'swiper/swiper-bundle.min.css';
 import "./TopAlbum.css";
 import arrowLeft from '../../Assests/Leftarrow.png';
 import arrowRight from '../../Assests/Rightarrow.png';
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import SwiperCore, { Navigation } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+SwiperCore.use([Navigation]);
 
 const TopAlbum = () => {
   const [albumData, setAlbumData] = useState([]);
@@ -110,41 +110,6 @@ const TopAlbum = () => {
     };
     loadHandler();
   }, []);
-
-  // Function to simulate clicking the next button on the slider
-  const clickNextButton = () => {
-    // Your implementation to simulate clicking the next button
-    // You may need to use the Swiper API to navigate to the next slide
-    // For example: swiperRef.current.slideNext();
-  };
-
-  // Function to check if the first two albums are visible
-  const areFirstTwoAlbumsVisible = () => {
-    // Your implementation to check the visibility of the first two albums
-    // You may need to use the Swiper API to get the current visible slides
-    // For example: swiperRef.current.activeIndex
-  };
-
-  // Test function to verify slider functionality
-  const testSliderFunctionality = () => {
-    // Assuming you have access to the Swiper instance
-    // You may need to use a useRef to get the Swiper instance
-    // For example: const swiperRef = useRef(null);
-
-    // Assuming the Swiper instance is assigned to swiperRef.current
-
-    // Simulate clicking the next button on the slider four times
-    for (let i = 0; i < 4; i++) {
-      clickNextButton();
-    }
-
-    // Verify if the first two albums are not visible
-    if (!areFirstTwoAlbumsVisible()) {
-      console.log("Slider functionality test - Passed");
-    } else {
-      console.log("Slider functionality test - Failed");
-    }
-  };
 
   const handleOnClick = () => {
     setCollapseView(!collapseView);
@@ -178,7 +143,6 @@ const TopAlbum = () => {
             prevEl: ".swiper-button-prev",
           }}
           className="topAlbum_swiper"
-          // ref={swiperRef} // Uncomment and assign to a ref if needed
         >
           {albumData.map((albumItem, index) => {
             const id = getUId();
@@ -201,4 +165,3 @@ const TopAlbum = () => {
 };
 
 export default TopAlbum;
-

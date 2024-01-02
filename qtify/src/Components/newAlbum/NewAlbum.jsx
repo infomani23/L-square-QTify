@@ -83,19 +83,20 @@
 
 // export default NewAlbum;
 
+
 import React, { useEffect, useState } from "react";
 import { newAlbumData, getUId } from "../AxiosData/AxiosData";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "../Card/Card";
-import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
 import "./NewAlbum.css";
 import arrowLeft from '../../Assests/Leftarrow.png';
 import arrowRight from '../../Assests/Rightarrow.png';
+import SwiperCore, { Navigation } from 'swiper';
 
-SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+SwiperCore.use([Navigation]);
 
 const NewAlbum = () => {
   const [albumData, setAlbumData] = useState([]);
@@ -115,34 +116,6 @@ const NewAlbum = () => {
 
   const handleOnClick = () => {
     setCollapseView(!collapseView);
-  };
-
-  // Function to simulate clicking the next button on the slider
-  const clickNextButton = () => {
-    // Your implementation to simulate clicking the next button
-    // For example, you can update the Swiper instance or use Swiper's API
-  };
-
-  // Test function to verify slider functionality
-  const testSliderFunctionality = () => {
-    // Simulate clicking the next button 4 times
-    for (let i = 0; i < 4; i++) {
-      clickNextButton();
-    }
-
-    // Verify if the first two albums are not visible
-    if (!areFirstTwoAlbumsVisible()) {
-      console.log("Slider functionality test - Passed");
-    } else {
-      console.log("Slider functionality test - Failed");
-    }
-  };
-
-  // Function to check if the first two albums are visible
-  const areFirstTwoAlbumsVisible = () => {
-    // Your implementation to check the visibility of the first two albums
-    // For example, you can inspect the DOM or use Swiper's API
-    return false; // Placeholder, update as needed
   };
 
   return (
@@ -195,4 +168,3 @@ const NewAlbum = () => {
 };
 
 export default NewAlbum;
-
