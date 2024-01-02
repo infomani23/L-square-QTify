@@ -3,40 +3,32 @@ import { newAlbumData, getUId } from "../AxiosData/AxiosData";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Card from "../Card/Card";
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
 import "./NewAlbum.css";
+import arrowLeft from '../../Assests/Leftarrow.png';
+import arrowRight from '../../Assests/Rightarrow.png';
 
-/**
- * Represents the NewAlbum component.
- * Displays a list of new albums and includes a "Show all" button to toggle the view.
- * @returns {JSX.Element} The rendered NewAlbum component.
- */
+// Install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 const NewAlbum = () => {
-  // Define the albumData state to store the fetched album data
   const [albumData, setAlbumData] = useState([]);
-
-  // Define the collapseView state to determine whether the view is collapsed or not
   const [collapseView, setCollapseView] = useState(true);
 
-  // Fetch the new album data when the component is rendered
   useEffect(() => {
     const loadHandler = async () => {
       try {
-        // Fetch the new album data using the newAlbumData function from AxiosData
         const res = await newAlbumData();
-        // Update the albumData state with the fetched data
         setAlbumData(res);
       } catch (error) {
         console.log("Error fetching new album data:", error);
       }
     };
-    // Call the loadHandler function
     loadHandler();
   }, []);
 
-  /**
-   * Handles the click event of the "Show all" button.
-   * Toggles the collapse view state.
-   */
   const handleOnClick = () => {
     setCollapseView(!collapseView);
   };
@@ -49,30 +41,43 @@ const NewAlbum = () => {
           {collapseView ? `Show all` : `Collapse`}
         </button>
       </div>
-      <Grid
-        container
-        spacing={collapseView ? 2 : 2}
-        style={{ paddingLeft: collapseView ? "30px" : "15px" }}
-        className="newAlbum_cards"
-      >
-        {/* Render the cards based on the collapse view */}
-        {albumData.map((albumItem, index) => {
-          // Generate a unique id for each card
-          const id = getUId();
-
-          // Determine whether to display the card based on the collapse view
-          if (collapseView || index < 6) {
+      {collapseView ? (
+        <Grid container spacing={2} className="newAlbum_cards">
+          {albumData.map((albumItem, index) => {
+            const id = getUId();
             return (
-                <Grid item xs={2} key={id}>
-                    <Card data={albumItem} type="normal" />
-                </Grid>
+              <Grid item xs={2} key={id}>
+                <Card data={albumItem} type="normal" />
+              </Grid>
             );
-        } else {
-            return null;
-        }
-        
-        })}
-      </Grid>
+          })}
+        </Grid>
+      ) : (
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={4}
+          navigation={{
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }}
+          className="newAlbum_swiper"
+        >
+          {albumData.map((albumItem, index) => {
+            const id = getUId();
+            return (
+              <SwiperSlide key={id}>
+                <Card data={albumItem} type="normal" />
+              </SwiperSlide>
+            );
+          })}
+          <div className="swiper-button-next">
+            <img src={arrowRight} alt="Right Arrow" />
+          </div>
+          <div className="swiper-button-prev">
+            <img src={arrowLeft} alt="Left Arrow" />
+          </div>
+        </Swiper>
+      )}
     </Box>
   );
 };
