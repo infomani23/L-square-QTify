@@ -79,8 +79,7 @@
 // };
 
 // export default TopAlbum;
-
-
+// TopAlbum.js
 import React, { useEffect, useState } from "react";
 import { topAlbumData, getUId } from "../AxiosData/AxiosData";
 import Box from "@mui/material/Box";
@@ -143,6 +142,7 @@ const TopAlbum = () => {
             prevEl: ".swiper-button-prev",
           }}
           className="topAlbum_swiper"
+          data-testid="topAlbumSwiper" // Add a data-testid for easier selection in tests
         >
           {albumData.map((albumItem, index) => {
             const id = getUId();

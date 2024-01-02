@@ -83,7 +83,7 @@
 
 // export default NewAlbum;
 
-
+// NewAlbum.js
 import React, { useEffect, useState } from "react";
 import { newAlbumData, getUId } from "../AxiosData/AxiosData";
 import Box from "@mui/material/Box";
@@ -146,6 +146,7 @@ const NewAlbum = () => {
             prevEl: ".swiper-button-prev",
           }}
           className="newAlbum_swiper"
+          data-testid="newAlbumSwiper" // Add a data-testid for easier selection in tests
         >
           {albumData.map((albumItem, index) => {
             const id = getUId();
