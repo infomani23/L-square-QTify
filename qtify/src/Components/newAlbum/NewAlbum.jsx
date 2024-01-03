@@ -83,7 +83,7 @@
 
 // export default NewAlbum;
 
-// NewAlbum.js
+
 import React, { useEffect, useState } from "react";
 import { newAlbumData, getUId } from "../AxiosData/AxiosData";
 import Box from "@mui/material/Box";
@@ -101,6 +101,7 @@ SwiperCore.use([Navigation]);
 const NewAlbum = () => {
   const [albumData, setAlbumData] = useState([]);
   const [collapseView, setCollapseView] = useState(true);
+  const [nextButtonClickCount, setNextButtonClickCount] = useState(0);
 
   useEffect(() => {
     const loadHandler = async () => {
@@ -116,6 +117,32 @@ const NewAlbum = () => {
 
   const handleOnClick = () => {
     setCollapseView(!collapseView);
+  };
+
+  const handleNextClick = () => {
+    setNextButtonClickCount(nextButtonClickCount + 1);
+
+    // Logic to check visibility after 4 clicks
+    if (nextButtonClickCount >= 4) {
+      // Assuming you have a function to check the visibility of the first two albums
+      checkVisibilityOfFirstTwoAlbums();
+    }
+  };
+
+  const checkVisibilityOfFirstTwoAlbums = () => {
+    // Add your logic to check if the first two albums are not visible
+    // For example, you can use refs to get the Swiper instance and check the visible slides
+    // Ref: https://swiperjs.com/react#swiper-instance
+    const swiperInstance = document.querySelector('.newAlbum_swiper').swiper;
+
+    if (swiperInstance) {
+      const visibleSlides = swiperInstance.slides;
+      const firstTwoAlbumsVisible = visibleSlides[0] && visibleSlides[1];
+
+      if (!firstTwoAlbumsVisible) {
+        console.log('The first two albums are not visible!');
+      }
+    }
   };
 
   return (
@@ -146,7 +173,7 @@ const NewAlbum = () => {
             prevEl: ".swiper-button-prev",
           }}
           className="newAlbum_swiper"
-          data-testid="newAlbumSwiper" // Add a data-testid for easier selection in tests
+          onSlideChange={handleNextClick}
         >
           {albumData.map((albumItem, index) => {
             const id = getUId();
